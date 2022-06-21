@@ -1,1 +1,16 @@
-<button type="button" class="btn btn-lg btn-primary"  >Add server</button>
+<app-header (state)="checkState($event)"></app-header>
+<div class="app-body">
+  <div class="row">
+    <div class="col-md-12">
+      <div *ngIf="title === 'Recipes'; else elseBlock">
+        <app-recipes></app-recipes>
+      </div>
+<ng-template #elseBlock>
+  <app-shopping-list></app-shopping-list>
+</ng-template>
+      
+      
+    </div>
+    
+  </div>
+</div>

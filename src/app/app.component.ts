@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'shopping-list-angular';
+  title = 'Recipe';
+
+  checkState(tabState){
+    console.log(tabState);
+    this.title = tabState;
+
+  }
+
 }
