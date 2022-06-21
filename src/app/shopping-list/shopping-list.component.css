@@ -1,0 +1,28 @@
+.main-shopping{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.form-group-input1{
+    width: 50%;
+}
+.form-group-input2{
+width: 30%;
+margin-bottom: 10px;
+}
+.ingridients{
+    margin-top: 20px;
+}
+.ingedient{
+    width: 30%;
+    border-style: solid;
+    border-collapse: collapse;
+    border-color: #EEEEEE;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: -2px;
+}
+.ingedient:hover {
+    background-color: #EEEEEE;
+
+}

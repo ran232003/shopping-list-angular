@@ -2,11 +2,12 @@
 <div class="app-body">
   <div class="row">
     <div class="col-md-12">
-      <div *ngIf="title === 'Recipes'; else elseBlock">
-        <app-recipes></app-recipes>
+      <div *ngIf="title === 'Shopping List'; else elseBlock">
+        <app-shopping-list></app-shopping-list>
       </div>
 <ng-template #elseBlock>
-  <app-shopping-list></app-shopping-list>
+  <app-recipes></app-recipes>
+ 
 </ng-template>
       
       

@@ -1,5 +1,7 @@
 <div>
-    <app-recipe-item></app-recipe-item>
+    <app-recipe-item *ngFor="let recipe of recipes"
+    [item] = "recipe"
+    ></app-recipe-item>
     
 </div>
 

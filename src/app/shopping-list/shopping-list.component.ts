@@ -8,7 +8,7 @@ import { Ingedient } from '../shared/ingedient.model';
 })
 export class ShoppingListComponent implements OnInit {
 
-  ingedients:Ingedient[] = [new Ingedient("test",5)]
+  ingedients:Ingedient[] = [new Ingedient("test",5),new Ingedient("test",5)]
   constructor() { }
 
   ngOnInit(): void {
