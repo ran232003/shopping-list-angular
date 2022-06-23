@@ -18,7 +18,8 @@ export class ShoppingListComponent implements OnInit {
     this.editIngedient = ingedient;
   }
   addIngrredient(){
-    this.ingedients.push(this.editIngedient);
+    let ingedient = new Ingedient(this.editIngedient.name,this.editIngedient.amount);
+    this.ingedients.push(ingedient);
   }
   editIngrredient(){
     this.ingedients.find((item)=>{
@@ -30,7 +31,10 @@ export class ShoppingListComponent implements OnInit {
   }
 
   deleteIngrredient(){
-    this.ingedients.push(this.editIngedient);
+    this.ingedients = this.ingedients.filter((item)=>{
+      return item.id != this.editIngedient.id;
+    })
+    this.editIngedient = new Ingedient("",0);
   }
 
 
