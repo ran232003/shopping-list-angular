@@ -1,6 +1,7 @@
 <div>
     <app-recipe-item *ngFor="let recipe of recipes"
     [item] = "recipe"
+    (itemClick) = "itemWasClick($event)"
     ></app-recipe-item>
     
 </div>

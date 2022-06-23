@@ -3,22 +3,26 @@
         <form>
             <div class="form-group-input1">
               <label for="exampleInputEmail1">Name</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+              <input value={{editIngedient.name}} [(ngModel)]="editIngedient.name"  name="something" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
               
             </div>
             <div class="form-group-input2">
               <label for="exampleInputPassword1">Amount</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Amount">
+              <input value={{editIngedient.amount}} [(ngModel)]="editIngedient.amount" name="somethinasg" type="number" class="form-control" id="exampleInputPassword1" placeholder="Amount">
             </div>
-           
-            <button type="submit" class="btn btn-primary">Add</button>
+           <div>
+            <button type="button" (click)="addIngrredient()" class="btn btn-primary">Add</button>
+            <button type="button" (click)="editIngrredient()" class="btn btn-success">Edit</button>
+            <button type="button" (click)="deleteIngrredient()" class="btn btn-danger">Delete</button>
+           </div>
+            
           </form>
 
     </div>
     <div class="ingridients">
         <div>
             <div  *ngFor="let ingedient of ingedients">
-                <div class="ingedient">
+                <div class="ingedient" (click)="handleIngedient(ingedient)">
                     {{ingedient.name}}  ({{ingedient.amount}})
                 </div>
             </div>

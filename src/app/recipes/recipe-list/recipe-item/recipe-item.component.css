@@ -11,8 +11,24 @@
         margin-top: 15px;
         cursor: pointer;
         display: flex;
+        justify-content: space-between;
   
 }
 div:hover {
     background-color: yellow;
   }
+  .my-image{
+      width: fit-content;
+      height: 80px;
+      margin-right: 0px;
+      margin-left: auto;
+     
+  }
+  img {
+      width: fit-content;
+      height: inherit;
+    max-width: 100%;
+    border-radius: 4px;
+   
+    max-height: 100%;
+}
