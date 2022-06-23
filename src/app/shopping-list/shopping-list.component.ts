@@ -20,6 +20,7 @@ export class ShoppingListComponent implements OnInit {
   addIngrredient(){
     let ingedient = new Ingedient(this.editIngedient.name,this.editIngedient.amount);
     this.ingedients.push(ingedient);
+    this.editIngedient = new Ingedient("",0);
   }
   editIngrredient(){
     this.ingedients.find((item)=>{
