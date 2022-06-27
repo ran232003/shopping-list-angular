@@ -1,14 +1,17 @@
-<div class="mainDetail">
-    <div class="imageClass">
-        <img src={{recipe.imagePath}}/>
+<div *ngIf="recipe !== undefined && recipe !== null">
+    <div class="mainDetail">
+        <div class="imageClass">
+            <img src={{recipe.imagePath}}/>
+        </div>
+        <div>
+            <h2>{{recipe.name}}</h2>
+        </div>
+        <div>
+            <p>
+                {{recipe.desc}}
+            </p>
+        </div>
+        
     </div>
-    <div>
-        <h2>{{recipe.name}}</h2>
-    </div>
-    <div>
-        <p>
-            {{recipe.desc}}
-        </p>
-    </div>
-    
 </div>
+

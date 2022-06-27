@@ -1,40 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { Ingedient } from '../shared/ingedient.model';
+import { ShoppingListService } from './shopping-list.service';
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css']
+  styleUrls: ['./shopping-list.component.css'],
+  providers:[ShoppingListService]
 })
 export class ShoppingListComponent implements OnInit {
   editIngedient:Ingedient = new Ingedient("",0)
-  ingedients:Ingedient[] = [new Ingedient("test",10),new Ingedient("test",5)]
-  constructor() { }
+  // ingedients:Ingedient[] = [new Ingedient("test",10),new Ingedient("test",5)]
+  ingedients:Ingedient[] = []
+  constructor(private shoppingListService: ShoppingListService) {}
 
   ngOnInit(): void {
+    this.ingedients = this.shoppingListService.getingedients() 
+    this.shoppingListService.changeIngedient.subscribe((ingedients)=>{
+      this.ingedients = ingedients
+    })
   }
   handleIngedient(ingedient:Ingedient){
     console.log(ingedient.id)
     this.editIngedient = ingedient;
   }
   addIngrredient(){
-    let ingedient = new Ingedient(this.editIngedient.name,this.editIngedient.amount);
-    this.ingedients.push(ingedient);
+    this.shoppingListService.addIngrredient(this.editIngedient);
     this.editIngedient = new Ingedient("",0);
   }
   editIngrredient(){
-    this.ingedients.find((item)=>{
-      if(item.id === this.editIngedient.id){
-        item.name = this.editIngedient.name;
-        item.amount = this.editIngedient.amount
-      }
-    })
+    this.shoppingListService.editIngrredient(this.editIngedient);
   }
 
   deleteIngrredient(){
-    this.ingedients = this.ingedients.filter((item)=>{
-      return item.id != this.editIngedient.id;
-    })
+    this.shoppingListService.deleteIngrredient(this.editIngedient);
     this.editIngedient = new Ingedient("",0);
   }
 

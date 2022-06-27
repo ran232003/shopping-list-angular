@@ -4,12 +4,22 @@
 (item)="onItem($event)"
 ></app-recipe-list>
     </div>
-    <div class="col-md-7" *ngIf="item !== undefined && item !== null">
+    <!-- <div class="col-md-7" *ngIf="item !== undefined && item !== null">
         
         <app-recipe-detail
         [recipe] = "item"
         >
 
         </app-recipe-detail>
+       
+    </div> -->
+     <div class="col-md-7" >
+        
+        <app-recipe-detail
+        
+        >
+
+        </app-recipe-detail>
+       
     </div>
 </div>
