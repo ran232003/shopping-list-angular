@@ -5,18 +5,21 @@ import { RecipeService } from '../recipe.service';
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
-  styleUrls: ['./recipe-detail.component.css']
+  styleUrls: ['./recipe-detail.component.css'],
 })
 export class RecipeDetailComponent implements OnInit {
-  recipe:Recipe;
+  recipe: Recipe;
   //@Input() recipe:Recipe;
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService) {}
 
   ngOnInit(): void {
-    this.recipeService.recipeSelected.subscribe((recipe)=>{
-      console.log("ngInit")
+    this.recipeService.recipeSelected.subscribe((recipe) => {
+      console.log('ngInit');
       this.recipe = recipe;
-    })
+    });
   }
 
+  moveList() {
+    this.recipeService.moveRecipe(this.recipe.ingredients);
+  }
 }

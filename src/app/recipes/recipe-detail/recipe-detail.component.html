@@ -1,17 +1,21 @@
 <div *ngIf="recipe !== undefined && recipe !== null">
-    <div class="mainDetail">
-        <div class="imageClass">
-            <img src={{recipe.imagePath}}/>
-        </div>
-        <div>
-            <h2>{{recipe.name}}</h2>
-        </div>
-        <div>
-            <p>
-                {{recipe.desc}}
-            </p>
-        </div>
-        
+  <div class="mainDetail">
+    <div class="imageClass">
+      <img src="{{ recipe.imagePath }}" />
     </div>
+    <div>
+      <h2>{{ recipe.name }}</h2>
+    </div>
+    <div>
+      <p>
+        {{ recipe.desc }}
+      </p>
+    </div>
+    <div *ngFor="let ingredient of recipe.ingredients">
+      <p>{{ ingredient.name }} ({{ ingredient.amount }})</p>
+    </div>
+    <button type="button" (click)="moveList()" class="btn btn-primary">
+      Move List
+    </button>
+  </div>
 </div>
-

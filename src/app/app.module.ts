@@ -12,7 +12,7 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { InputComponent } from './shared/input/input.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { ShoppingListService } from './shopping-list/shopping-list.service';
 
 @NgModule({
   declarations: [
@@ -24,15 +24,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ShoppingListComponent,
     ShoppingEditComponent,
     RecipeItemComponent,
-    InputComponent
+    InputComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    NgbModule,
-    
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, FormsModule, NgbModule],
+  providers: [ShoppingListService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
