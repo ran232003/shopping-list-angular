@@ -1,8 +1,10 @@
 import { EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Ingedient } from '../shared/ingedient.model';
 
 export class ShoppingListService {
-  changeIngedient = new EventEmitter<Ingedient[]>();
+  //changeIngedient = new EventEmitter<Ingedient[]>();
+  changeIngedient = new Subject<Ingedient[]>();
   ingedients: Ingedient[] = [
     new Ingedient('test', 10),
     new Ingedient('test', 5),
@@ -13,7 +15,8 @@ export class ShoppingListService {
   addIngrredient(editIngedient) {
     let ingedient = new Ingedient(editIngedient.name, editIngedient.amount);
     this.ingedients.push(ingedient);
-    this.changeIngedient.emit(this.ingedients);
+    //this.changeIngedient.emit(this.ingedients);
+    this.changeIngedient.next(this.ingedients);
     console.log(this.ingedients);
   }
   editIngrredient(editIngedient) {
@@ -23,7 +26,8 @@ export class ShoppingListService {
         item.amount = editIngedient.amount;
       }
     });
-    this.changeIngedient.emit(this.ingedients);
+    //this.changeIngedient.emit(this.ingedients);
+    this.changeIngedient.next(this.ingedients);
   }
 
   deleteIngrredient(editIngedient) {
@@ -32,7 +36,8 @@ export class ShoppingListService {
       return item.id != editIngedient.id;
     });
     console.log('second', this.ingedients);
-    this.changeIngedient.emit(this.ingedients);
+    // this.changeIngedient.emit(this.ingedients);
+    this.changeIngedient.next(this.ingedients);
   }
   getRecipe(ingirdients: Ingedient[]) {
     console.log(ingirdients);

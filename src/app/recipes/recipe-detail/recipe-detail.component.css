@@ -1,22 +1,23 @@
-.mainDetail{
-    margin-top: 15px;
+.mainDetail {
+  margin-top: 15px;
 }
-.imageClass{
-    width: 40%;
-      height: 30%;
-     
+.imageClass {
+  width: 40%;
+  height: 30%;
 }
 img {
-    
   max-width: 100%;
   border-radius: 4px;
- 
+
   max-height: 100%;
   margin-bottom: 10px;
 }
 
 @media screen and (max-width: 600px) {
-    .imageClass {
-      margin-top: 30px;
-    }
+  .imageClass {
+    margin-top: 30px;
   }
+}
+button {
+  margin-right: 5px;
+}

@@ -1,32 +1,76 @@
 <div class="main-shopping">
-    <div class="inputs">
-        <form>
-            <div class="form-group-input1">
-              <label for="exampleInputEmail1">Name</label>
-              <input value={{editIngedient.name}} [(ngModel)]="editIngedient.name"  name="something" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
-              
-            </div>
-            <div class="form-group-input2">
-              <label for="exampleInputPassword1">Amount</label>
-              <input value={{editIngedient.amount}} [(ngModel)]="editIngedient.amount" name="somethinasg" type="number" class="form-control" id="exampleInputPassword1" placeholder="Amount">
-            </div>
-           <div>
-            <button type="button" (click)="addIngrredient()" class="btn btn-primary">Add</button>
-            <button type="button" (click)="editIngrredient()" class="btn btn-success">Edit</button>
-            <button type="button" (click)="deleteIngrredient()" class="btn btn-danger">Delete</button>
-           </div>
-          
-          </form>
+  <div class="inputs">
+    <form (ngSubmit)="addIngrredient(form)" #form="ngForm">
+      <div class="form-group-input1">
+        <label for="exampleInputEmail1">Name</label>
+        <input
+          value="{{ editIngedient.name }}"
+          name="name"
+          ngModel
+          type="text"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Enter Name"
+          required
+          pattern="^[a-zA-Z,]{1,20}$"
+        />
+      </div>
+      <div class="form-group-input2">
+        <label for="exampleInputPassword1">Amount</label>
+        <input
+          ngModel
+          name="amount"
+          value="{{ editIngedient.amount }}"
+          type="number"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Amount"
+          required
+          pattern="^[1-9][0-9]?$|^100$"
+        />
+      </div>
+      <div>
+        <button
+          *ngIf="editMode !== true; else elseBlock"
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!form.valid"
+        >
+          Add
+        </button>
+        <ng-template #elseBlock>
+          <button
+            (click)="editIngrredient()"
+            type="button"
+            class="btn btn-primary"
+            [disabled]="!form.valid"
+          >
+            Update
+          </button>
+        </ng-template>
 
-    </div>
-    <div class="ingridients">
-        <div>
-            <div  *ngFor="let ingedient of ingedients">
-                <div class="ingedient" (click)="handleIngedient(ingedient)">
-                    {{ingedient.name}}  ({{ingedient.amount}})
-                </div>
-            </div>
+        <button
+          type="button"
+          (click)="deleteIngrredient()"
+          class="btn btn-danger"
+        >
+          Delete
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="ingridients">
+    <div>
+      <div *ngFor="let ingedient of ingedients; let i = index">
+        <div
+          class="ingedient"
+          [ngClass]="{ highlight: selectedIndex === i }"
+          (click)="handleIngedient(ingedient, i)"
+        >
+          {{ ingedient.name }} ({{ ingedient.amount }})
         </div>
+      </div>
     </div>
-
+  </div>
 </div>

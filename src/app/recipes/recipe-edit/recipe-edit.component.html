@@ -1,0 +1,79 @@
+<div class="main-edit">
+  <div class="formClass">
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <div class="flex button">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-danger">Cancel</button>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Enter Name"
+          name="name"
+          [ngModel]="recipe.name"
+          required
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll never share your email with anyone else.</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Image Url</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Image Url"
+          name="image"
+          [ngModel]="recipe.imagePath"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Description</label>
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          name="desc"
+          [ngModel]="recipe.desc"
+          required
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Ingredients</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Image Url"
+          name="image"
+          [ngModel]="recipe.imagePath"
+          required
+        />
+        <br />
+        <div class="flexInput" *ngFor="let item of recipe.ingredients">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Image Url"
+            [name]="item.name"
+            [ngModel]="item.name"
+            required
+          />
+          <input
+            type="number"
+            class="form-control input2"
+            placeholder="Image Url"
+            [name]="item.amount"
+            [ngModel]="item.amount"
+            required
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
