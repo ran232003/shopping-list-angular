@@ -8,6 +8,5 @@ export class Ingedient {
     this.amount = amount;
     Ingedient.num = Ingedient.num + 1;
     this.id = Ingedient.num;
-    console.log('in cont');
   }
 }

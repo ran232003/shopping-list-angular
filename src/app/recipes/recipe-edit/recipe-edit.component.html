@@ -2,8 +2,8 @@
   <div class="formClass">
     <form (ngSubmit)="onSubmit(form)" #form="ngForm">
       <div class="flex button">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-danger">Cancel</button>
+        <button type="submit" class="btn btn-primary bt">Save</button>
+        <button type="button" class="btn btn-danger bt">Cancel</button>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Name</label>
@@ -46,20 +46,16 @@
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Ingredients</label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Image Url"
-          name="image"
-          [ngModel]="recipe.imagePath"
-          required
-        />
+
         <br />
-        <div class="flexInput" *ngFor="let item of recipe.ingredients">
+        <div
+          class="flexInput"
+          *ngFor="let item of recipe.ingredients; index as i"
+        >
           <input
             type="text"
-            class="form-control"
-            placeholder="Image Url"
+            class="form-control input3"
+            placeholder="name"
             [name]="item.name"
             [ngModel]="item.name"
             required
@@ -67,11 +63,23 @@
           <input
             type="number"
             class="form-control input2"
-            placeholder="Image Url"
-            [name]="item.amount"
+            placeholder="amount"
+            [name]="item.id"
             [ngModel]="item.amount"
             required
           />
+          <button
+            (click)="removeIng(item)"
+            type="button"
+            class="btn btn-danger"
+          >
+            X
+          </button>
+        </div>
+        <div class="btnAdd">
+          <button (click)="addIng()" type="button" class="btn btn-primary">
+            Add Ingredients
+          </button>
         </div>
       </div>
     </form>

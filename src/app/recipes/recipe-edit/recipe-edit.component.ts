@@ -33,14 +33,14 @@ export class RecipeEditComponent implements OnInit {
   ];
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      console.log(params['id']); // { orderby: "price" }
+      // { orderby: "price" }
       let id = params['id'];
       if (id) {
         this.recipe = this.recipeService.getRecopeById(id);
         this.editMode = true;
         //this.formRef.form.patchValue({});
       } else {
-        this.recipe = new Recipe('', '', '', this.ingedients);
+        this.recipe = new Recipe('', '', '', [new Ingedient('New', 0)]);
         this.editMode = false;
       }
     });
@@ -58,7 +58,9 @@ export class RecipeEditComponent implements OnInit {
   //     console.log(this.formRef, 'a');
   //   }
   // }
-
+  removeIng(item) {
+    this.recipeService.removingIng(this.recipe, item);
+  }
   onSubmit(form) {
     console.log(form, 'on submit');
     let { name, image, desc } = form.value;
@@ -67,9 +69,10 @@ export class RecipeEditComponent implements OnInit {
     this.recipe.imagePath = image;
     this.recipe.desc = desc;
     this.recipe.ingredients.map((item) => {
+      console.log(form.value, item.id);
       console.log(form.value[item.name]);
       item.name = form.value[item.name];
-      item.amount = form.value[item.amount];
+      item.amount = form.value[item.id];
     });
     if (this.editMode) {
     } else {
@@ -78,7 +81,11 @@ export class RecipeEditComponent implements OnInit {
     }
     this.editMode = false;
     console.log(this.recipe);
-    // form.reset();
-    //this.router.navigate(['/recipe', 'new-recipe']);
+    form.reset();
+    this.router.navigate(['/recipe', 'new-recipe']);
+  }
+  addIng() {
+    this.recipeService.addIng(this.recipe);
+    console.log('add', this.recipe, this.formRef);
   }
 }

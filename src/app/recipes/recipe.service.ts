@@ -31,19 +31,16 @@ export class RecipeService {
   }
   getRecopeById(id) {
     let result = this.recipes.find((recipe) => {
-      console.log(id, recipe.id);
       return recipe.id == id;
     });
     return result;
   }
   addRecipe(recipe) {
-    console.log('inside add recipe');
     this.recipes.push(recipe);
     this.recpieChange.next(this.recipes);
   }
   editRecipe(recipe) {
     this.recipes.find((item) => {
-      console.log(item.id);
       if (item.id === recipe.id) {
         item.name = recipe.name;
         item.imagePath = recipe.imagePath;
@@ -51,5 +48,26 @@ export class RecipeService {
         recipe.ingredients = recipe.ingredients;
       }
     });
+    this.recpieChange.next(this.recipes);
+  }
+  removingIng(recipe, ing) {
+    this.recipes.find((item) => {
+      if (item.id === recipe.id) {
+        recipe.ingredients = recipe.ingredients.filter((ingridient) => {
+          if (ingridient.id !== ing.id) {
+            return ingridient;
+          }
+        });
+      }
+    });
+    this.recpieChange.next(this.recipes);
+  }
+  addIng(recipe) {
+    this.recipes.find((item) => {
+      if (item.id === recipe.id) {
+        recipe.ingredients.push(new Ingedient('new', 0));
+      }
+    });
+    this.recpieChange.next(this.recipes);
   }
 }

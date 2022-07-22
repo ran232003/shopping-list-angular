@@ -11,16 +11,13 @@ import { RecipeService } from './recipe.service';
 })
 export class RecipesComponent implements OnInit {
   item: Recipe;
-  constructor(private router: Router) {
-    console.log(this.item);
-  }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
   onItem(item) {
     this.item = item;
   }
   newRecipe() {
-    console.log('new');
     this.router.navigate(['/recipe', 'new-recipe']);
   }
 }
