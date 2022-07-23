@@ -65,9 +65,16 @@ export class RecipeService {
   addIng(recipe) {
     this.recipes.find((item) => {
       if (item.id === recipe.id) {
-        recipe.ingredients.push(new Ingedient('new', 0));
+        recipe.ingredients.push(new Ingedient('', 1));
       }
     });
+    this.recpieChange.next(this.recipes);
+  }
+  deleteRecipe(recipe) {
+    this.recipes = this.recipes.filter((rec) => {
+      return recipe.id !== rec.id;
+    });
+    console.log(this.recipes);
     this.recpieChange.next(this.recipes);
   }
 }

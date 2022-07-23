@@ -2,8 +2,19 @@
   <div class="formClass">
     <form (ngSubmit)="onSubmit(form)" #form="ngForm">
       <div class="flex button">
-        <button type="submit" class="btn btn-primary bt">Save</button>
-        <button type="button" class="btn btn-danger bt">Cancel</button>
+        <button
+          [disabled]="!form.valid"
+          type="submit"
+          class="btn btn-primary bt"
+        >
+          Save
+        </button>
+        <button (click)="onCancel()" type="button" class="btn btn-warning bt">
+          Cancel
+        </button>
+        <button (click)="onDelete()" type="button" class="btn btn-danger bt">
+          Delete
+        </button>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Name</label>
@@ -17,9 +28,6 @@
           [ngModel]="recipe.name"
           required
         />
-        <small id="emailHelp" class="form-text text-muted"
-          >We'll never share your email with anyone else.</small
-        >
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Image Url</label>
@@ -56,7 +64,7 @@
             type="text"
             class="form-control input3"
             placeholder="name"
-            [name]="item.name"
+            [name]="'name' + item.id"
             [ngModel]="item.name"
             required
           />
@@ -67,6 +75,7 @@
             [name]="item.id"
             [ngModel]="item.amount"
             required
+            min="1"
           />
           <button
             (click)="removeIng(item)"

@@ -19,6 +19,7 @@
 .input2 {
   margin-left: 5px;
   width: 20%;
+  min-width: 70px;
   text-align: center;
   margin-right: 5px;
   height: fit-content;

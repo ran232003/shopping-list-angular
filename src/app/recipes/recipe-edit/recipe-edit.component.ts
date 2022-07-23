@@ -40,7 +40,8 @@ export class RecipeEditComponent implements OnInit {
         this.editMode = true;
         //this.formRef.form.patchValue({});
       } else {
-        this.recipe = new Recipe('', '', '', [new Ingedient('New', 0)]);
+        this.recipe = new Recipe('', '', '', [new Ingedient('', 1)]);
+        console.log(this.recipe.id);
         this.editMode = false;
       }
     });
@@ -59,7 +60,15 @@ export class RecipeEditComponent implements OnInit {
   //   }
   // }
   removeIng(item) {
-    this.recipeService.removingIng(this.recipe, item);
+    if (this.editMode) {
+      this.recipeService.removingIng(this.recipe, item);
+    } else {
+      this.recipe.ingredients = this.recipe.ingredients.filter((ingridient) => {
+        if (ingridient.id !== item.id) {
+          return ingridient;
+        }
+      });
+    }
   }
   onSubmit(form) {
     console.log(form, 'on submit');
@@ -71,7 +80,8 @@ export class RecipeEditComponent implements OnInit {
     this.recipe.ingredients.map((item) => {
       console.log(form.value, item.id);
       console.log(form.value[item.name]);
-      item.name = form.value[item.name];
+      let nameKey = 'name' + item.id;
+      item.name = form.value[nameKey];
       item.amount = form.value[item.id];
     });
     if (this.editMode) {
@@ -85,7 +95,18 @@ export class RecipeEditComponent implements OnInit {
     this.router.navigate(['/recipe', 'new-recipe']);
   }
   addIng() {
-    this.recipeService.addIng(this.recipe);
-    console.log('add', this.recipe, this.formRef);
+    if (this.editMode) {
+      this.recipeService.addIng(this.recipe);
+      console.log('add', this.recipe, this.formRef);
+    } else {
+      this.recipe.ingredients.push(new Ingedient('', 1));
+    }
+  }
+  onCancel() {
+    this.router.navigate(['/recipe']);
+  }
+  onDelete() {
+    this.recipeService.deleteRecipe(this.recipe);
+    this.router.navigate(['/recipe']);
   }
 }
