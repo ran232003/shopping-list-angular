@@ -9,6 +9,7 @@ import {
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ingedient } from 'src/app/shared/ingedient.model';
+import { RecipeApiService } from '../recepie-api.service';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 
@@ -24,7 +25,8 @@ export class RecipeEditComponent implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private recipeApi: RecipeApiService
   ) {}
   //recipe: Recipe;
   ingedients: Ingedient[] = [
@@ -32,6 +34,7 @@ export class RecipeEditComponent implements OnInit {
     new Ingedient('test22', 5),
   ];
   ngOnInit() {
+    console.log('nginit');
     this.route.params.subscribe((params) => {
       // { orderby: "price" }
       let id = params['id'];
@@ -91,8 +94,14 @@ export class RecipeEditComponent implements OnInit {
     }
     this.editMode = false;
     console.log(this.recipe);
+    this.formRef.reset();
     form.reset();
-    this.router.navigate(['/recipe', 'new-recipe']);
+    console.log(form);
+    console.log('-----------------');
+    console.log(this.formRef);
+    this.recipeApi.addRecipeApi(this.recipe);
+    this.router.navigate(['/recipe']);
+    console.log('-----------------');
   }
   addIng() {
     if (this.editMode) {
@@ -106,7 +115,8 @@ export class RecipeEditComponent implements OnInit {
     this.router.navigate(['/recipe']);
   }
   onDelete() {
-    this.recipeService.deleteRecipe(this.recipe);
+    // this.recipeService.deleteRecipe(this.recipe);
+    this.recipeApi.deleteRecipe(this.recipe);
     this.router.navigate(['/recipe']);
   }
 }

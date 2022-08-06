@@ -8,6 +8,8 @@
 
 # Node
 /node_modules
+/shopping-back/node_modules
+
 npm-debug.log
 yarn-error.log
 

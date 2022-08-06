@@ -17,6 +17,10 @@ import { AppRouting } from './app-routing.module';
 import { ErrorComponent } from './error/error.component';
 import { RecipeService } from './recipes/recipe.service';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { RecipeApiService } from './recipes/recepie-api.service';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthComponent } from './auth/auth.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -31,9 +35,17 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     InputComponent,
     ErrorComponent,
     RecipeEditComponent,
+    AuthComponent,
+    HomepageComponent,
   ],
-  imports: [BrowserModule, FormsModule, NgbModule, AppRouting],
-  providers: [ShoppingListService, RecipeService],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    NgbModule,
+    AppRouting,
+    HttpClientModule,
+  ],
+  providers: [ShoppingListService, RecipeService, RecipeApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

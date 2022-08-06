@@ -6,25 +6,30 @@ import { Recipe } from './recipe.model';
 @Injectable()
 export class RecipeService {
   recpieChange = new Subject<Recipe[]>();
-  recipes: Recipe[] = [
-    new Recipe(
-      'Banana shake',
-      'put banana in a blender',
-      'https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bananas-218094b-scaled.jpg',
-      [new Ingedient('banana1', 5), new Ingedient('banana2', 11)]
-    ),
-    new Recipe(
-      'Pancakes',
-      'put Pancakes in a blender',
-      'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F43%2F2022%2F03%2F20%2F20334-Banana-Pancakes-mfs__2x3.jpg',
-      [new Ingedient('gamba1', 5), new Ingedient('gamba2', 22)]
-    ),
-  ];
+  recipes: Recipe[];
+  // recipes: Recipe[] = [
+  //   new Recipe(
+  //     'Banana shake',
+  //     'put banana in a blender',
+  //     'https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bananas-218094b-scaled.jpg',
+  //     [new Ingedient('banana1', 5), new Ingedient('banana2', 11)]
+  //   ),
+  //   new Recipe(
+  //     'Pancakes',
+  //     'put Pancakes in a blender',
+  //     'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F43%2F2022%2F03%2F20%2F20334-Banana-Pancakes-mfs__2x3.jpg',
+  //     [new Ingedient('gamba1', 5), new Ingedient('gamba2', 22)]
+  //   ),
+  // ];
   recipeSelected = new EventEmitter<Recipe>();
   constructor(private shoppingList: ShoppingListService) {}
 
   getRecipe() {
     return this.recipes;
+  }
+  setRecipes(recipes) {
+    this.recipes = recipes;
+    this.recpieChange.next(this.recipes);
   }
   moveRecipe(ingridients: Ingedient[]) {
     this.shoppingList.getRecipe(ingridients);
