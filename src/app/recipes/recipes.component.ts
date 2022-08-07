@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
 
@@ -11,11 +12,15 @@ import { RecipeService } from './recipe.service';
 })
 export class RecipesComponent implements OnInit {
   item: Recipe;
-  constructor(private router: Router) {}
+  login: Boolean;
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {}
   onItem(item) {
     this.item = item;
+    this.authService.logInUpdate.subscribe((login) => {
+      this.login = login;
+    });
   }
   newRecipe() {
     this.router.navigate(['/recipe', 'new-recipe']);

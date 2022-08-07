@@ -21,6 +21,7 @@ import { RecipeApiService } from './recipes/recepie-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,12 @@ import { HomepageComponent } from './homepage/homepage.component';
     AppRouting,
     HttpClientModule,
   ],
-  providers: [ShoppingListService, RecipeService, RecipeApiService],
+  providers: [
+    ShoppingListService,
+    RecipeService,
+    RecipeApiService,
+    AuthService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
