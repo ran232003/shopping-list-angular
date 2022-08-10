@@ -1,0 +1,16 @@
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">{{ lable }}</label>
+    <input
+      type="{{ type }}"
+      name="{{ name }}"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      placeholder="{{ placeHolder }}"
+      [(ngModel)]="value"
+      (change)="onChange()"
+    />
+    <small id="emailHelp" class="form-text text-muted">{{ message }}</small>
+  </div>
+</form>

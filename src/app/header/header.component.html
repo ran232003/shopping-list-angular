@@ -27,19 +27,19 @@
           <a
             class="nav-link active"
             aria-current="page"
-            routerLink="/"
+            [routerLink]="routerLink1"
             #recipesTab
             (click)="headerState(recipesTab)"
-            >Recipes</a
+            >{{ header1 }}</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
-            routerLink="/shopping"
+            [routerLink]="routerLink2"
             #shoppingTab
             (click)="headerState(shoppingTab)"
-            >Shopping List</a
+            >{{ header2 }}</a
           >
         </li>
       </ul>

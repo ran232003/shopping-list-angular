@@ -9,7 +9,6 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { InputComponent } from './shared/input/input.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
@@ -22,10 +21,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AuthService } from './auth/auth.service';
+import { MyInputComponent } from './my-input/my-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+
     HeaderComponent,
     RecipesComponent,
     RecipeListComponent,
@@ -33,11 +34,12 @@ import { AuthService } from './auth/auth.service';
     ShoppingListComponent,
     ShoppingEditComponent,
     RecipeItemComponent,
-    InputComponent,
+
     ErrorComponent,
     RecipeEditComponent,
     AuthComponent,
     HomepageComponent,
+    MyInputComponent,
   ],
   imports: [
     BrowserModule,

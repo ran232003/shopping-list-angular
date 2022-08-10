@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthComponent } from './auth/auth.component';
 import { ErrorComponent } from './error/error.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
@@ -20,6 +21,8 @@ const appRoutes: Routes = [
     ],
   },
   { path: 'shopping', component: ShoppingListComponent },
+  { path: 'auth/:state', component: AuthComponent },
+
   { path: 'not-found', component: ErrorComponent },
   { path: '**', redirectTo: '/not-found' },
 ];

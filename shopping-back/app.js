@@ -11,7 +11,10 @@ mongoose.connect(
 const cors = require("cors");
 app.use(cors());
 const recipeRoute = require("./routes/recipe-routes");
+const userRoute = require("./routes/user-route");
 app.use("/api/recipe", recipeRoute);
+
+app.use("/api/user", userRoute);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

@@ -1,1 +1,39 @@
-<div class="mainAuth"></div>
+<div>
+  <div class="center">
+    <h3>{{ pageState | uppercase }}</h3>
+  </div>
+  <div class="signup">
+    <div *ngIf="pageState === 'signup'; else elseBlock">
+      <app-my-input
+        lable="Full Name."
+        message=""
+        placeHolder="Enter Name"
+        type="text"
+        name="name"
+        (valueChange)="change($event)"
+      ></app-my-input>
+    </div>
+    <ng-template #elseBlock></ng-template>
+
+    <app-my-input
+      lable="Email address."
+      message="We'll never share your email with anyone else."
+      placeHolder="Enter email"
+      type="email"
+      name="email"
+      (valueChange)="change($event)"
+    ></app-my-input>
+    <app-my-input
+      lable="Password"
+      message="Choose Unique Password"
+      placeHolder="Enter Password"
+      type="password"
+      name="password"
+      (valueChange)="change($event)"
+    ></app-my-input>
+
+    <button class="btn btn-primary btns" (click)="submit()" type="button">
+      Submit
+    </button>
+  </div>
+</div>

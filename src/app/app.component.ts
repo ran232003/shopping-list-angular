@@ -15,8 +15,9 @@ export class AppComponent implements OnInit {
     console.log(this.user);
     if (this.user) {
       this.authService.setLogin(this.user);
+      console.log('if', this.user);
     } else {
-      this.authService.setLogin(this.user);
+      this.authService.setLogin(false);
     }
   }
   title = 'Recipe';
