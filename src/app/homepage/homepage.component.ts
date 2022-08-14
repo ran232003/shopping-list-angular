@@ -18,6 +18,11 @@ export class HomepageComponent implements OnInit {
       console.log('inside sub');
       this.login = login;
       console.log(login);
+      if (this.login) {
+        this.buttonChange = 'SHOPPING LIST';
+      } else {
+        this.buttonChange = 'GET STARTED';
+      }
     });
     console.log(this.login);
     if (this.login) {

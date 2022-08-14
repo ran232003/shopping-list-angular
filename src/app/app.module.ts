@@ -22,7 +22,9 @@ import { AuthComponent } from './auth/auth.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AuthService } from './auth/auth.service';
 import { MyInputComponent } from './my-input/my-input.component';
-
+import { ModalComponent } from './modal/modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +42,7 @@ import { MyInputComponent } from './my-input/my-input.component';
     AuthComponent,
     HomepageComponent,
     MyInputComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,8 @@ import { MyInputComponent } from './my-input/my-input.component';
     NgbModule,
     AppRouting,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
   ],
   providers: [
     ShoppingListService,

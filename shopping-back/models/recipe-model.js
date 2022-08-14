@@ -19,6 +19,7 @@ recipeSchema = mongoose.Schema({
     required: true,
     uniqe: true,
   },
+  userId: String,
 });
 
 const Recipe = mongoose.model("Recipe", recipeSchema);

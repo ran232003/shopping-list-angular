@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -12,7 +12,8 @@ export class AuthComponent implements OnInit {
   pageState: String = '';
   constructor(
     private router: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private routerNav: Router
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +28,16 @@ export class AuthComponent implements OnInit {
     this.authObject[key] = event.value;
   }
   submit() {
-    console.log(this.authObject);
-    this.authService.authUserApi(this.authObject, this.pageState);
+    console.log(this.authObject, this.pageState);
+    this.authService
+      .authUserApi(this.authObject, this.pageState)
+      .subscribe((response) => {
+        console.log(response, 'rann');
+        if (response['status'] === 'success') {
+          this.authService.setLogin(response['user']);
+          this.routerNav.navigate(['/recipe']);
+        } else {
+        }
+      });
   }
 }

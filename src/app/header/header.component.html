@@ -42,7 +42,11 @@
             >{{ header2 }}</a
           >
         </li>
+        <li *ngIf="login" class="nav-item signoutCursor">
+          <a class="nav-link signoutCursor" (click)="logOut()">LogOut</a>
+        </li>
       </ul>
     </div>
   </div>
+  <app-modal [wasClick]="wasClickHeader"></app-modal>
 </nav>
