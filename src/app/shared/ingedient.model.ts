@@ -7,6 +7,6 @@ export class Ingedient {
     this.name = name;
     this.amount = amount;
     Ingedient.num = Ingedient.num + 1;
-    this.id = Ingedient.num;
+    this.id = Math.round(Math.random() * (100000000 - 1) + 1);
   }
 }

@@ -19,7 +19,7 @@ export class Recipe {
     this.imagePath = imagePath;
     this.ingredients = ingredients;
     Recipe.classId = Recipe.classId + 1;
-    this.id = Recipe.classId;
+    this.id = Math.round(Math.random() * (100000000 - 1) + 1);
   }
   getId() {
     return Recipe.classId;

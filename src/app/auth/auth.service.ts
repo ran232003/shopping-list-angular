@@ -6,8 +6,8 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
-  logInUpdate = new Subject<Boolean>();
-  logIn: Boolean;
+  logInUpdate = new Subject<any>();
+  logIn: any;
   sub: Subscription;
   signUpSub = new Subject<{}>();
   openModal = new Subject<Boolean>();
