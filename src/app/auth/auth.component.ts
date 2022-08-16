@@ -34,7 +34,9 @@ export class AuthComponent implements OnInit {
       .subscribe((response) => {
         console.log(response, 'rann');
         if (response['status'] === 'success') {
-          this.authService.setLogin(response['user']);
+          let userObject = response['user'];
+          userObject['token'] = response['token'];
+          this.authService.setLogin(userObject);
           this.routerNav.navigate(['/recipe']);
         } else {
         }

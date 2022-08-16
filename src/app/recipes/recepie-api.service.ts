@@ -12,7 +12,8 @@ export class RecipeApiService {
   ) {}
   addRecipeApi(recipe: Recipe) {
     let user = this.authService.getLogin();
-    let id = user._id;
+    console.log(user, 'userrrr');
+    let id = user.id;
     this.http
       .post(`http://localhost:5000/api/recipe/newRecipe/${id}`, recipe)
       .subscribe((response) => {

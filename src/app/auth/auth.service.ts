@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { User } from '../shared/user.model';
 
 @Injectable()
 export class AuthService {
@@ -25,7 +26,15 @@ export class AuthService {
     this.logInUpdate.next(this.logIn);
   }
   setLogin(user) {
-    this.logIn = user;
+    let newUser = new User(
+      user.email,
+      user.name,
+      user.password,
+      user._id,
+      user.token
+    );
+    console.log(newUser);
+    this.logIn = newUser;
     this.logInUpdate.next(this.logIn);
     localStorage.setItem('user', JSON.stringify(user));
     console.log('this.logIn', this.logIn);

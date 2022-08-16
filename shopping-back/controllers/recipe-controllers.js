@@ -4,10 +4,19 @@ const Recipe = require("../models/recipe-model");
 const app = express();
 app.use(bodyParser.json());
 const mongoose = require("mongoose");
-
+const jwt = require("jsonwebtoken");
 const addRecipe = async (req, res, next) => {
   console.log("working", req.body);
   let id = req.params.id;
+  let token = req.headers["token"];
+  console.log("token", token);
+  try {
+    let decodeToken = jwt.verify(token, "my-secret");
+    console.log(decodeToken, "decode");
+  } catch (error) {
+    res.json({ status: "token expire" });
+  }
+
   let newRecipe = req.body;
   newRecipe = { ...newRecipe };
   newRecipe["userId"] = id;

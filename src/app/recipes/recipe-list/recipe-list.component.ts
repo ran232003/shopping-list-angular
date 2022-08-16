@@ -29,7 +29,6 @@ export class RecipeListComponent implements OnInit {
         this.recipes = recipes;
       }
     );
-    console.log(response);
     this.loading = false;
   }
   itemWasClick(recipe) {

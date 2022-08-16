@@ -34,7 +34,6 @@ export class RecipeEditComponent implements OnInit {
     new Ingedient('test22', 5),
   ];
   ngOnInit() {
-    console.log('nginit');
     this.route.params.subscribe((params) => {
       // { orderby: "price" }
       let id = params['id'];
@@ -81,8 +80,6 @@ export class RecipeEditComponent implements OnInit {
     this.recipe.imagePath = image;
     this.recipe.desc = desc;
     this.recipe.ingredients.map((item) => {
-      console.log(form.value, item.id);
-      console.log(form.value[item.name]);
       let nameKey = 'name' + item.id;
       item.name = form.value[nameKey];
       item.amount = form.value[item.id];
@@ -93,20 +90,16 @@ export class RecipeEditComponent implements OnInit {
       this.recipeService.addRecipe(this.recipe);
     }
     this.editMode = false;
-    console.log(this.recipe);
+
     this.formRef.reset();
     form.reset();
-    console.log(form);
-    console.log('-----------------');
-    console.log(this.formRef);
+
     this.recipeApi.addRecipeApi(this.recipe);
     this.router.navigate(['/recipe']);
-    console.log('-----------------');
   }
   addIng() {
     if (this.editMode) {
       this.recipeService.addIng(this.recipe);
-      console.log('add', this.recipe, this.formRef);
     } else {
       this.recipe.ingredients.push(new Ingedient('', 1));
     }
