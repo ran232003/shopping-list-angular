@@ -22,7 +22,7 @@ export class RecipeApiService {
   }
   getRecipesApi() {
     let user = this.authService.getLogin();
-    let id = user._id;
+    let id = user.id;
     console.log(user, id);
     let res = this.http
       .get(`http://localhost:5000/api/recipe/getRecipes/${id}`)

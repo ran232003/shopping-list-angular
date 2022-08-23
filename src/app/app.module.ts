@@ -26,20 +26,21 @@ import { ModalComponent } from './modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { ApiInterceptors } from './shared/api-interceptor.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatInputModule } from '@angular/material/input';
+import { RecpiesModule } from './recipes/recipes.module';
 @NgModule({
   declarations: [
     AppComponent,
 
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
+
     ShoppingListComponent,
     ShoppingEditComponent,
-    RecipeItemComponent,
 
     ErrorComponent,
-    RecipeEditComponent,
+
     AuthComponent,
     HomepageComponent,
     MyInputComponent,
@@ -53,6 +54,10 @@ import { ApiInterceptors } from './shared/api-interceptor.service';
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatSnackBarModule,
+    MatInputModule,
+    RecpiesModule,
   ],
   providers: [
     ShoppingListService,

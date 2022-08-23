@@ -26,18 +26,20 @@ export class AuthService {
     this.logInUpdate.next(this.logIn);
   }
   setLogin(user) {
-    let newUser = new User(
-      user.email,
-      user.name,
-      user.password,
-      user._id,
-      user.token
-    );
-    console.log(newUser);
-    this.logIn = newUser;
-    this.logInUpdate.next(this.logIn);
-    localStorage.setItem('user', JSON.stringify(user));
-    console.log('this.logIn', this.logIn);
+    if (user) {
+      let newUser = new User(
+        user.email,
+        user.name,
+        user.password,
+        user._id,
+        user.token
+      );
+      console.log(newUser);
+      this.logIn = newUser;
+      this.logInUpdate.next(this.logIn);
+      localStorage.setItem('user', JSON.stringify(user));
+      console.log('this.logIn', this.logIn);
+    }
   }
   getLogin() {
     return this.logIn;
