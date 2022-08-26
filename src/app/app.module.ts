@@ -30,6 +30,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { RecpiesModule } from './recipes/recipes.module';
+import { StoreModule } from '@ngrx/store';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { RecpiesModule } from './recipes/recipes.module';
     MatSnackBarModule,
     MatInputModule,
     RecpiesModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [
     ShoppingListService,
