@@ -31,6 +31,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { RecpiesModule } from './recipes/recipes.module';
 import { StoreModule } from '@ngrx/store';
+import { shoppingReducer } from './shopping-list/store/shopping-list.reducers';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +60,7 @@ import { StoreModule } from '@ngrx/store';
     MatSnackBarModule,
     MatInputModule,
     RecpiesModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ shoppingReducer: shoppingReducer }),
   ],
   providers: [
     ShoppingListService,
