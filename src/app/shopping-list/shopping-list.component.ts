@@ -6,7 +6,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
 import { Ingedient } from '../shared/ingedient.model';
 import { ShoppingListService } from './shopping-list.service';
 
@@ -19,22 +20,28 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   editIngedient: Ingedient = new Ingedient('', 0);
   editMode = false;
   selectedIndex;
+  ingridientsDataStore: Observable<Ingedient[]>;
   @ViewChild('form') formRef: NgForm;
   ingedientCss: string = 'ingedient';
   // ingedients:Ingedient[] = [new Ingedient("test",10),new Ingedient("test",5)]
   ingedients: Ingedient[] = [];
   validForm: boolean = false;
   changeIngSubscription: Subscription;
-  constructor(private shoppingListService: ShoppingListService) {}
+  constructor(
+    private shoppingListService: ShoppingListService,
+    private store: Store<{ shoppingList }>
+  ) {}
 
   ngOnInit(): void {
     // console.log(this.shoppingListService.getingedients());
+    this.ingridientsDataStore = this.store.select('shoppingList'); //slice of the state
     this.ingedients = this.shoppingListService.getingedients();
     this.changeIngSubscription =
       this.shoppingListService.changeIngedient.subscribe((ingedients) => {
         this.ingedients = ingedients;
       });
     //console.log(this.editMode);
+    console.log(this.ingridientsDataStore);
   }
   handleIngedient(ingedient: Ingedient, index) {
     console.log(this.formRef);

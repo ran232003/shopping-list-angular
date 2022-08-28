@@ -71,6 +71,20 @@
           {{ ingedient.name }} ({{ ingedient.amount }})
         </div>
       </div>
+      <div
+        *ngFor="
+          let ingedient of (ingridientsDataStore | async).ingedients;
+          let i = index
+        "
+      >
+        <div
+          class="ingedient"
+          [ngClass]="{ highlight: selectedIndex === i }"
+          (click)="handleIngedient(ingedient, i)"
+        >
+          {{ ingedient.name }} ({{ ingedient.amount }})
+        </div>
+      </div>
     </div>
   </div>
 </div>

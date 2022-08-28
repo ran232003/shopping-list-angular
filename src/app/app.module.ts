@@ -60,7 +60,7 @@ import { shoppingReducer } from './shopping-list/store/shopping-list.reducers';
     MatSnackBarModule,
     MatInputModule,
     RecpiesModule,
-    StoreModule.forRoot({ shoppingReducer: shoppingReducer }),
+    StoreModule.forRoot({ shoppingList: shoppingReducer }),
   ],
   providers: [
     ShoppingListService,

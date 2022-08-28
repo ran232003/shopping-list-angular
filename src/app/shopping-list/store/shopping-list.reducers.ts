@@ -16,4 +16,5 @@ export const shoppingReducer = (
       Ingedient: [...state.ingedients, action.payload],
     };
   }
+  return state;
 };
