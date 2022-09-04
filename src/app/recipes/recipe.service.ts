@@ -1,7 +1,12 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { Ingedient } from '../shared/ingedient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
+import {
+  AddIngridientsFromRecipe,
+  ADD_INGRIDIENT_FROM_RECIPE,
+} from '../shopping-list/store/shopping-list.actions';
 import { Recipe } from './recipe.model';
 @Injectable()
 export class RecipeService {
@@ -22,7 +27,10 @@ export class RecipeService {
   //   ),
   // ];
   recipeSelected = new EventEmitter<Recipe>();
-  constructor(private shoppingList: ShoppingListService) {}
+  constructor(
+    private shoppingList: ShoppingListService,
+    private store: Store<{ shoppingList: {} }>
+  ) {}
 
   getRecipe() {
     return this.recipes;
@@ -32,7 +40,8 @@ export class RecipeService {
     this.recpieChange.next(this.recipes);
   }
   moveRecipe(ingridients: Ingedient[]) {
-    this.shoppingList.getRecipe(ingridients);
+    //this.shoppingList.getRecipe(ingridients);
+    this.store.dispatch(new AddIngridientsFromRecipe(ingridients));
   }
   getRecopeById(id) {
     let result = this.recipes.find((recipe) => {

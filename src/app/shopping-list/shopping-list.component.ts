@@ -10,6 +10,11 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Ingedient } from '../shared/ingedient.model';
 import { ShoppingListService } from './shopping-list.service';
+import {
+  AddIngridient,
+  DeleteIngridients,
+  UpdateIngridients,
+} from './store/shopping-list.actions';
 
 @Component({
   selector: 'app-shopping-list',
@@ -19,6 +24,7 @@ import { ShoppingListService } from './shopping-list.service';
 export class ShoppingListComponent implements OnInit, OnDestroy {
   editIngedient: Ingedient = new Ingedient('', 0);
   editMode = false;
+  choosenIndex;
   selectedIndex;
   ingridientsDataStore: Observable<Ingedient[]>;
   @ViewChild('form') formRef: NgForm;
@@ -57,22 +63,36 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   addIngrredient(form: NgForm) {
     //console.log(form.valid);
     let ing = new Ingedient(form.value.name, form.value.amount);
-    this.shoppingListService.addIngrredient(ing);
+    //this.shoppingListService.addIngrredient(ing);
+    this.store.dispatch(new AddIngridient(ing));
     this.editIngedient = new Ingedient('', 0);
     form.reset();
   }
-  editIngrredient() {
+  getIndex(i) {
+    this.choosenIndex = i;
+    console.log(i);
+  }
+  editIngrredient(i) {
     this.editMode = false;
     this.selectedIndex = -1;
-    console.log(this.formRef);
-    this.editIngedient.amount = this.formRef.value.amount;
-    this.editIngedient.name = this.formRef.value.name;
-    this.shoppingListService.editIngrredient(this.editIngedient);
+    console.log('this.editIngedient', this.editIngedient);
+
+    // this.editIngedient['amount'] = this.formRef.value.amount;
+    // this.editIngedient['name'] = ' this.formRef.value.name';
+    //this.shoppingListService.editIngrredient(this.editIngedient);
+    this.store.dispatch(
+      new UpdateIngridients({
+        oldIng: this.editIngedient,
+        amount: this.formRef.value.amount,
+        name: this.formRef.value.name,
+      })
+    );
     this.editIngedient = new Ingedient('', 0);
   }
 
   deleteIngrredient() {
-    this.shoppingListService.deleteIngrredient(this.editIngedient);
+    // this.shoppingListService.deleteIngrredient(this.editIngedient);
+    this.store.dispatch(new DeleteIngridients(this.editIngedient));
     this.editIngedient = new Ingedient('', 0);
     this.editMode = false;
   }

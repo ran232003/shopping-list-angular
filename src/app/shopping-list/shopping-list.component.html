@@ -41,7 +41,7 @@
         </button>
         <ng-template #elseBlock>
           <button
-            (click)="editIngrredient()"
+            (click)="editIngrredient(i)"
             type="button"
             class="btn btn-primary"
             [disabled]="!form.valid"
@@ -62,15 +62,6 @@
   </div>
   <div class="ingridients">
     <div>
-      <div *ngFor="let ingedient of ingedients; let i = index">
-        <div
-          class="ingedient"
-          [ngClass]="{ highlight: selectedIndex === i }"
-          (click)="handleIngedient(ingedient, i)"
-        >
-          {{ ingedient.name }} ({{ ingedient.amount }})
-        </div>
-      </div>
       <div
         *ngFor="
           let ingedient of (ingridientsDataStore | async).ingedients;
