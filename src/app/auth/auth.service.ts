@@ -25,19 +25,12 @@ export class AuthService {
     this.router.navigate(['']);
     this.logInUpdate.next(this.logIn);
   }
-  setLogin(user) {
-    if (user) {
-      let newUser = new User(
-        user.email,
-        user.name,
-        user.password,
-        user._id,
-        user.token
-      );
-      console.log(newUser);
+  setLogin(newUser) {
+    if (newUser) {
+      console.log(newUser, 'in service auth');
       this.logIn = newUser;
       this.logInUpdate.next(this.logIn);
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(newUser));
       console.log('this.logIn', this.logIn);
     }
   }

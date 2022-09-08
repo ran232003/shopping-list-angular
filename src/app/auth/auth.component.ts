@@ -2,6 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Store } from '@ngrx/store';
+import { loginUser } from './store/auth.actions';
+import { User } from '../shared/user.model';
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -14,7 +18,8 @@ export class AuthComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private router: ActivatedRoute,
     private authService: AuthService,
-    private routerNav: Router
+    private routerNav: Router,
+    private store: Store<{ auth }>
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +52,16 @@ export class AuthComponent implements OnInit {
           };
           let userObject = response['user'];
           userObject['token'] = response['token'];
-          this.authService.setLogin(userObject);
+          console.log('before set', userObject);
+          let newUser = new User(
+            userObject.email,
+            userObject.name,
+            userObject.password,
+            userObject._id,
+            userObject.token
+          );
+          this.authService.setLogin(newUser);
+          this.store.dispatch(new loginUser(newUser));
           this.routerNav.navigate(['/recipe']);
           this.openSnackBar('Success', config);
         } else {

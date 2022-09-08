@@ -41,11 +41,14 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // console.log(this.shoppingListService.getingedients());
     this.ingridientsDataStore = this.store.select('shoppingList'); //slice of the state
-    this.ingedients = this.shoppingListService.getingedients();
-    this.changeIngSubscription =
-      this.shoppingListService.changeIngedient.subscribe((ingedients) => {
-        this.ingedients = ingedients;
-      });
+    this.store.select('shoppingList').subscribe((stateData) => {
+      console.log(stateData.ingedients, 'checking'); //how to get data from the store
+    });
+    // this.ingedients = this.shoppingListService.getingedients();
+    // this.changeIngSubscription =
+    //   this.shoppingListService.changeIngedient.subscribe((ingedients) => {
+    //     this.ingedients = ingedients;
+    //   });
     //console.log(this.editMode);
     console.log(this.ingridientsDataStore);
   }
@@ -97,6 +100,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.editMode = false;
   }
   ngOnDestroy(): void {
-    this.changeIngSubscription.unsubscribe();
+    //  this.changeIngSubscription.unsubscribe();
   }
 }
